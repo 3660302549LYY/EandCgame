@@ -61,14 +61,14 @@ def get_random_chinese():
         score+=10   #每回答正确加10分
         os.system('cls')   #清空控制台
         print("上一题用时："+str(dt)+"秒\n")  # 输出用时
+        if dt>=4:   #每分钟加10分
+            score-=6
         get_random_chinese()  #递归调用函数，继续游戏
     else:
         print("回答错误！正确答案是："+answer[1])   #输出正确答案
-        print("游戏结束！")
-        print("你的得分是："+str(score))   #输出分数
-        print("用时："+str(time_count))   #输出总用时
-        if_exit=input("是否退出游戏？(y/n):\n")   #用户输入是否退出游戏
-        if if_exit=="y":
+        print("共答对"+str(count-1)+"题，得分"+str(score)+"分，\n总用时："+str(time_count)+"秒\n"+"游戏结束！")   #输出总用时
+        if_exit=input("是否退出游戏？(1 or y/n or Enter):\n")   #用户输入是否退出游戏
+        if if_exit=="y" or if_exit=="1":
             exit()   #退出游戏
         else:
             count = 0  # 计数器清零
@@ -80,7 +80,7 @@ def get_random_chinese():
 def clist():
     global all_chinese   #声明全局变量
     global all_data   #声明全局变量
-    choice_list1=input("请选择词库：\na.四级词库（4616个词汇）(默认)\nb.四八级词库（12815个词汇）\n请输入：")
+    choice_list1=input("请选择词库：\na.四级词库（4616个词汇）(默认按Enter键)\nb.四八级词库（12815个词汇）\n请输入：（参数包含：a、A、b、B、Enter）")
     print(choice_list1) 
     if choice_list1=="a":
                 all_chinese=siji_chinese   #存储中文列数据
@@ -120,9 +120,9 @@ def clist():
             clist()   #递归调用函数，继续游戏
 #原创作者：郭航
 print("欢迎来到英语词汇游戏！")
-print("程序设计：郭航\nQQ：3600673534\n版本：v1.0\n语言：Python 3.7.4\n操作系统：Windows")
+print("程序设计：郭航\nQQ：3600673534 \n个人博客：https://3660302549lyy.github.io（获取更多资源或最新版本）\n（手机访问时请关闭流量使用WiFi，或使用加速器，谢谢）\n版本：v1.0\n语言：Python 3.7.4\n操作系统：Windows")
 print("游戏目标：测试玩家的词汇量。\n")
-print("游戏规则：每一轮游戏，系统会随机选择一行数据，并给出四个随机中文词汇，其中有一个是正确的中文释义。\n玩家需要根据英文部分的中文释义，选择正确的中文释义。\n如果玩家回答错误，则游戏结束，并给出正确答案。如果玩家回答正确，则系统加10分，并继续游戏。\n玩家可以选择退出游戏。")
+print("游戏规则：每一轮游戏，系统会随机选择一行数据，并给出四个随机中文词汇，其中有一个是正确的中文释义。\n玩家需要根据英文部分的中文释义，选择正确的中文释义。\n如果玩家回答错误，则游戏结束，并给出正确答案。如果玩家回答正确，则系统加10分，并继续游戏。(但答题时间超过4秒，系统扣6分)\n\n玩家可以选择退出游戏。")
 print("答出正确的中文释义前的字母可以是A、B、C、D或a、b、c、d或1、2、3、4分别表示选择的中文释义。\n")
 input("按Enter键开始游戏！")   #用户输入任意键开始游戏
 os.system('cls')   #清空控制台
